@@ -22,7 +22,7 @@
                 <option value="DINKES">DINKES</option>
                 <option value="DPMPTSP">DPMPTSP</option>
                 <option value="INSPEKTORAT">INSPEKTORAT</option>
-                <option value="KESBANGPOL/SATPOL PP">KESBANGPOL/SATPOL PP</option>
+                <option value="SATPOLPP">SATPOLPP</option>
                 <option value="DISDUKCAPIL">DISDUKCAPIL</option>
                 <option value="DPUPR">DPUPR</option>
                 <option value="BPBD">BPBD</option>
