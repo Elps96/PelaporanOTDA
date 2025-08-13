@@ -11,7 +11,7 @@
  Target Server Version : 100432
  File Encoding         : 65001
 
- Date: 12/08/2025 11:39:55
+ Date: 13/08/2025 15:59:56
 */
 
 SET NAMES utf8mb4;
@@ -162,8 +162,9 @@ CREATE TABLE `sessions`  (
 -- ----------------------------
 -- Records of sessions
 -- ----------------------------
-INSERT INTO `sessions` VALUES ('5hspnJT7uX0o2cb6K8A8WjrlCX4Q5QRAOASInXuy', 4, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiTUQ3UjdldVV4cEtEZWJidHR0WUNad2NrazU1VlJrdnhDWVRURmdVMCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI3OiJodHRwOi8vbG9jYWxob3N0OjgwMDAvbG9naW4iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo0O3M6NToidGFodW4iO3M6NDoiMjAyNCI7czozOiJvcGQiO3M6NToiSFVLVU0iO30=', 1754962058);
-INSERT INTO `sessions` VALUES ('Bg64bX1EQhfVkp7mkWkBsfZLKtHdSpOoz3vieLqk', 3, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiS2haM1ExNldMcGFha0dhMGpiUGxVQjZpRko0NnhDQjd6amRpUFVTSCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjIxOiJodHRwOi8vbG9jYWxob3N0OjgwMDAiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTozO3M6NToidGFodW4iO3M6NDoiMjAyNCI7czozOiJvcGQiO3M6MzoiQktEIjt9', 1754973135);
+INSERT INTO `sessions` VALUES ('kDp0dlkMw5I6WoVSvWrIG7oFtDmzO2nMvfcJCIAV', 10, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiYk5qbzhjcFduc01TdTRPam5Ma3BsV0QwTm14ZVhVUlc0QTRGOG9yVCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI3OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvbG9naW4iO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxMDtzOjU6InRhaHVuIjtzOjQ6IjIwMjQiO3M6Mzoib3BkIjtzOjg6IlNBVFBPTFBQIjt9', 1755075352);
+INSERT INTO `sessions` VALUES ('NKo3ZAvZ34ZSwKECHkCQgx559cU8EkTL07CPL2UR', 10, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiR09VOVZOVzVrVVJidWlTSWthOTZieVM4VmJKbXpuaHVCelZyNUUySCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjEwO3M6NToidGFodW4iO3M6NDoiMjAyNCI7czozOiJvcGQiO3M6ODoiU0FUUE9MUFAiO30=', 1755075466);
+INSERT INTO `sessions` VALUES ('ZN1mriN8teeFMb00P4B9ySwpMZnQx1TMEwdPxw6k', 10, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 OPR/120.0.0.0', 'YTo3OntzOjY6Il90b2tlbiI7czo0MDoiSnU5SFV5WXJmWHpHNXdlUlA5THhoTkZBVk83TzloeTFoVFZOd2VvZCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI2OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvb3RkYSI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjEwO3M6NToidGFodW4iO3M6NDoiMjAyNCI7czozOiJvcGQiO3M6MjA6IktFU0JBTkdQT0wvU0FUUE9MIFBQIjt9', 1755060754);
 
 -- ----------------------------
 -- Table structure for tb_indikator_komponen_otda
@@ -210,7 +211,7 @@ INSERT INTO `tb_indikator_komponen_otda` VALUES ('EKPD', 'EKPD008', 8, 2024, 'Ke
 INSERT INTO `tb_indikator_komponen_otda` VALUES ('EKPD', 'EKPD009', 9, 2024, 'Inovasi Daerah (sesuai dengan PP 38/2017)', NULL, 'Jumlah Inovasi Daerah (Jenis dan Manfaat)', NULL, NULL, NULL, NULL, 'ORGANISASI', NULL, NULL);
 INSERT INTO `tb_indikator_komponen_otda` VALUES ('EKPD', 'EKPD010', 10, 2024, 'Kerjasama Daerah', NULL, NULL, NULL, NULL, NULL, NULL, 'PEMERINTAHAN', NULL, NULL);
 INSERT INTO `tb_indikator_komponen_otda` VALUES ('EKPD', 'EKPD011', 11, 2024, 'Jumlah Kerjasama Daerah', NULL, 'Kerjasama yang masih berlaku dan Manfaatnya', NULL, NULL, NULL, NULL, 'PEMERINTAHAN', NULL, NULL);
-INSERT INTO `tb_indikator_komponen_otda` VALUES ('EKPD', 'EKPD012', 12, 2024, 'Jumlah Penanganan Konflik Tahun N', NULL, 'Jumlah Penanganan Konflik Tahun N', NULL, NULL, NULL, NULL, 'KESBANGPOL/SATPOL PP', NULL, NULL);
+INSERT INTO `tb_indikator_komponen_otda` VALUES ('EKPD', 'EKPD012', 12, 2024, 'Jumlah Penanganan Konflik Tahun N', NULL, 'Jumlah Penanganan Konflik Tahun N', NULL, NULL, NULL, NULL, 'SATPOLPP', NULL, NULL);
 INSERT INTO `tb_indikator_komponen_otda` VALUES ('EKPD', 'EKPD013', 13, 2024, 'Prevalensi Stunting (Pendek Dan Sangat Pendek) Pada Balita', NULL, '(Jumlah balita umur 0 sampai 59 bulan dengan panjang badan atau tinggi badan kurang dari -2 Standar Deviasi pada suatu wilayah dan kurun waktu tertentu / Jumlah balita umur 0 sampai 59 bulan yang diukur panjang badan atau tinggi badan pada suatu wilayah dan kurun waktu yang sama', NULL, NULL, NULL, NULL, 'DINKES', 'Jumlah balita umur 0 sampai 59 bulan dengan panjang badan atau tinggi badan kurang dari -2 Standar Deviasi pada suatu wilayah dan kurun waktu tertentu', 'Jumlah balita umur 0 sampai 59 bulan yang diukur panjang badan atau tinggi badan pada suatu wilayah dan kurun waktu yang sama');
 
 -- ----------------------------
@@ -399,8 +400,8 @@ INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (33, 'REKDPRD033', NULL, 'DPUPR', '
 INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (34, 'REKDPRD034', NULL, 'DISDAGPERINAKER', 'DISDAGPERINAKER', 2024);
 INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (35, 'REKDPRD035', NULL, 'DISPERTAN PP', 'DISPERTAN PP', 2024);
 INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (NULL, 'REKDPRD035', NULL, 'DISDAGPERINAKER', 'DISDAGPERINAKER', 2024);
-INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (36, 'REKDPRD036', NULL, 'SATPOL PP', 'SATPOL PP', 2024);
-INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (37, 'REKDPRD037', NULL, 'SATPOL PP', 'SATPOL PP', 2024);
+INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (36, 'REKDPRD036', NULL, 'SATPOLPP', 'SATPOL PP', 2024);
+INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (37, 'REKDPRD037', NULL, 'SATPOLPP', 'SATPOL PP', 2024);
 INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (38, 'REKDPRD038', NULL, 'BAPERLITBANG', 'BAPERLITBANG', 2024);
 INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (39, 'REKDPRD039', NULL, 'DISPERTAN PP', 'DISPERTAN PP', 2024);
 INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (NULL, NULL, NULL, 'DISPARPORA', 'DISPARPORA', 2024);
@@ -429,7 +430,7 @@ INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (58, 'REKDPRD058', NULL, 'BKPSDM', 
 INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (59, 'REKDPRD059', NULL, 'BKD', 'BKD', 2024);
 INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (60, 'REKDPRD060', NULL, 'BKD', 'BKD', 2024);
 INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (61, 'REKDPRD061', NULL, 'BKD', 'BKD', 2024);
-INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (62, 'REKDPRD062', NULL, 'SATPOL PP', 'BKD', 2024);
+INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (62, 'REKDPRD062', NULL, 'SATPOLPP', 'BKD', 2024);
 INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (NULL, 'REKDPRD062', NULL, 'BAPERLITBANG', 'BAPERLITBANG', 2024);
 INSERT INTO `tb_rekomendasi_dprd_opd` VALUES (63, 'REKDPRD063', NULL, 'BKD', 'BKD', 2024);
 
@@ -457,7 +458,7 @@ INSERT INTO `tb_rekomendasi_dprd_sub` VALUES (NULL, 'REKDPRD007', 'DPRD007S003',
 INSERT INTO `tb_rekomendasi_dprd_sub` VALUES (NULL, 'REKDPRD020', 'DPRD020S001', 'BKD', 'BKD', 'a.    Persentase kawasan pemukiman kumuh dibawah 10 ha di kabupaten/ kota yang ditangani;', NULL, 2024);
 INSERT INTO `tb_rekomendasi_dprd_sub` VALUES (NULL, 'REKDPRD020', 'DPRD020S002', 'DPUPR', 'DPUPR', 'b.    Persentase cakupan layanan air minum (perpipaan);', NULL, 2024);
 INSERT INTO `tb_rekomendasi_dprd_sub` VALUES (NULL, 'REKDPRD020', 'DPRD020S003', 'BPBD', 'BPBD', 'c.    Persentase desa/kelurahan tangguh bencana;', NULL, 2024);
-INSERT INTO `tb_rekomendasi_dprd_sub` VALUES (NULL, 'REKDPRD020', 'DPRD020S004', 'SATPOL PP', 'SATPOL PP', 'd.    Persentasi Perda dan Perkada yang ditegakkan;', NULL, 2024);
+INSERT INTO `tb_rekomendasi_dprd_sub` VALUES (NULL, 'REKDPRD020', 'DPRD020S004', 'SATPOLPP', 'SATPOL PP', 'd.    Persentasi Perda dan Perkada yang ditegakkan;', NULL, 2024);
 INSERT INTO `tb_rekomendasi_dprd_sub` VALUES (NULL, 'REKDPRD020', 'DPRD020S005', 'DISDAGPERINAKER', 'DISDAGPERINAKER', 'e.    Persentase tenaga kerja bersertifikasi kompetensi;', NULL, 2024);
 INSERT INTO `tb_rekomendasi_dprd_sub` VALUES (NULL, 'REKDPRD020', 'DPRD020S006', 'DP3APPKB', 'DP3APPKB', 'f.     Persentase kebutuhan ber KB yang tidak terpenuhi (unmet need);', NULL, 2024);
 INSERT INTO `tb_rekomendasi_dprd_sub` VALUES (NULL, 'REKDPRD020', 'DPRD020S007', 'DISKUKTRANS ESDM', 'DISKUKTRANS ESDM', 'g.    Persentase pertumbuhan usaha mikro;', NULL, 2024);
@@ -503,7 +504,7 @@ INSERT INTO `users` VALUES (6, 'BKPSDM', 'bkpsdm@gmail.com', NULL, '$2y$12$c8cph
 INSERT INTO `users` VALUES (7, 'DINKES', 'dinkes@gmail.com', NULL, '$2y$12$DwmUMYuAGlPC1hheTw3WOOJU8Gt2yIhWnuZuks3igCcDbS8aQbqpq', NULL, '2025-07-30 04:27:58', '2025-07-30 04:27:58', 'DINKES');
 INSERT INTO `users` VALUES (8, 'DPMPTSP', 'dpmptsp@gmail.com', NULL, '$2y$12$tNOgdwVAT2tzkkaWRb003Ot3Iec9/H.ivOKw9PHHrp7hJ3g6Xth4W', NULL, '2025-07-30 04:28:54', '2025-07-30 04:28:54', 'DPMPTSP');
 INSERT INTO `users` VALUES (9, 'INSPEKTORAT', 'inspektorat@gmail.com', NULL, '$2y$12$K5XtOdxuJRcwRZ0CVpIC4eXsduiv8GSkkhHGUseMGRvTSsfDi8FqG', NULL, '2025-07-30 04:29:45', '2025-07-30 04:29:45', 'INSPEKTORAT');
-INSERT INTO `users` VALUES (10, 'SATPOL PP', 'kesbangpol/satpolpp@gmail.com', NULL, '$2y$12$.dkrGokpMfapl/HHRPfvR.k6bDNtOBlE34PZ0L/9ieruCfK7nSHd6', NULL, '2025-07-30 04:30:53', '2025-07-30 04:30:53', 'KESBANGPOL/SATPOL PP');
+INSERT INTO `users` VALUES (10, 'SATPOLPP', 'kesbangpol/satpolpp@gmail.com', NULL, '$2y$12$.dkrGokpMfapl/HHRPfvR.k6bDNtOBlE34PZ0L/9ieruCfK7nSHd6', NULL, '2025-07-30 04:30:53', '2025-07-30 04:30:53', 'SATPOLPP');
 INSERT INTO `users` VALUES (11, 'DISDUKCAPIL', 'disdukcapil@gmial.com', NULL, '$2y$12$Dt0EQtqXLGY3epf7HbRIoOBufCd2flTBwfuLFQ4wizMgsODQ4kEte', NULL, '2025-08-12 02:03:43', '2025-08-12 02:03:43', 'DISDUKCAPIL');
 INSERT INTO `users` VALUES (12, 'DPUPR', 'dpupr@gmial.com', NULL, '$2y$12$jr7itKqrUWowF6fts/S2uOIEXyGMWY/EeWDuchQsclTRZVi5f2tOC', NULL, '2025-08-12 02:20:24', '2025-08-12 02:20:24', 'DPUPR');
 INSERT INTO `users` VALUES (13, 'BPBD', 'bpbd@gmail.com', NULL, '$2y$12$Nq1jLm.mNypCR6hPqxQOzuANncsbklchWwB8y0odfz11qXGf9gB5i', NULL, '2025-08-12 02:21:43', '2025-08-12 02:21:43', 'BPBD');
