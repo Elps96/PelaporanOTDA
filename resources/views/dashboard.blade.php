@@ -15,23 +15,24 @@
             </div>
         </div>
         @php
-        $rowIndikatorOTDA = DB::select("
-        SELECT	A.Jenis,
-                        A.KodePertanyaan,
-                        A.`No`,
-                        A.Tahun,
-                        A.Indikator,
-                        A.DefinisiOperasional,
-                        A.Rumus,
-                        A.BuktiPendukung,
-                        A.OPDPengampu,
-                        A.JenisInput,
-                        A.Pilihan1,
-                        A.Pilihan2,
-                        B.Capaian,
-                        B.Keterangan,
-                        B.FileBukti
-        FROM		(
+        $OPD = Auth::user()->name;
+        $baseQuery = "
+            SELECT A.Jenis,
+                A.KodePertanyaan,
+                A.`No`,
+                A.Tahun,
+                A.Indikator,
+                A.DefinisiOperasional,
+                A.Rumus,
+                A.BuktiPendukung,
+                A.OPDPengampu,
+                A.JenisInput,
+                A.Pilihan1,
+                A.Pilihan2,
+                B.Capaian,
+                B.Keterangan,
+                B.FileBukti
+            FROM (
                         SELECT 	A.*,
                                         'JenisInput1' AS JenisInput,
                                         'Tepat Waktu' AS Pilihan1,
@@ -97,14 +98,23 @@
                         FROM 		tb_indikator_komponen_otda A
                         WHERE 	A.KodePertanyaan IN ('EKPD009')
                         )	A
-        LEFT JOIN	tb_input_capaian B ON A.KodePertanyaan = B.KodePertanyaan
-        WHERE			A.OPDPengampu = ?", [Auth::user()->name]
-        );
-        @endphp
+            
+            LEFT JOIN tb_input_capaian B ON A.KodePertanyaan = B.KodePertanyaan
+        ";
+
+        if ($OPD == 'PEMERINTAHAN') {
+            // Tanpa WHERE
+            $rowIndikatorOTDA = DB::select($baseQuery);
+        } else {
+            // Dengan WHERE
+            $rowIndikatorOTDA = DB::select($baseQuery . " WHERE A.OPDPengampu = ?", [$OPD]);
+        }
+    @endphp
 
 
         @php
-            $rowsRekomendasiDPRD = DB::select("
+            $OPD = Auth::user()->name;
+            $baseQuery = "
                 SELECT
                     A.No,
                     A.Tahun,
@@ -119,28 +129,78 @@
                     ON A.KodeRekomendasiDPRD = B.KodeRekomendasiDPRD
                 LEFT JOIN tb_rekomendasi_dprd_sub C 
                     ON A.KodeRekomendasiDPRD = C.KodeRekomendasiDPRD
-                WHERE COALESCE(B.OPDPengampu, C.OPDPengampu) = ?
-            ", [Auth::user()->name]);
+            ";
+            if ($OPD == 'PEMERINTAHAN') {
+                // Tanpa WHERE
+                $rowsRekomendasiDPRD = DB::select($baseQuery);
+            } else {
+                // Dengan WHERE
+                $rowsRekomendasiDPRD = DB::select($baseQuery . " WHERE A.OPDPengampu = ?", [$OPD]);
+            }
         @endphp
-        
+
+        @php
+            $totalIndikator = count($rowIndikatorOTDA);
+            $capaianTerisi = 0;
+            foreach ($rowIndikatorOTDA as $row) {
+                if (!empty($row->Capaian)) {
+                    $capaianTerisi++;
+                }
+            }
+        @endphp
+
         @if(!empty($rowIndikatorOTDA))
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title">Indikator Komponen OTDA {{ session('tahun') }}</h5>
-                <p class="card-text">Lihat data Indikator Komponen OTDA.</p>
+                <p class="card-text">
+                    Lihat data Indikator Komponen OTDA.<br>
+                    <b>Capaian terisi: {{ $capaianTerisi }} / {{ $totalIndikator }}</b>
+                </p>
                 <a href="{{ route('otda.index') }}" class="btn btn-outline-primary">Lihat Indikator</a>
             </div>
         </div>
         @endif
+        @php
+            $totalRekomendasi = count($rowsRekomendasiDPRD);
+            $rekomendasiTerisi = 0;
+            foreach ($rowsRekomendasiDPRD as $row) {
+                if (!empty($row->TindakLanjut)) {
+                    $rekomendasiTerisi++;
+                }
+            }
+        @endphp
         @if(!empty($rowsRekomendasiDPRD))
             <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">Rekomendasi DPRD {{ session('tahun') }}</h5>
-                    <p class="card-text">Rekomendasi DPRD berdasar tahun sebelumnya</p>
+                    <p class="card-text">Rekomendasi DPRD berdasar tahun sebelumnya
+                        Lihat data Rekomendasi DPRD.<br>
+                        <b>Tindak Lanjut terisi: {{ $rekomendasiTerisi }} / {{ $totalRekomendasi }}</b>
+                    </p>
                     <a href="{{ route('dprd.index') }}" class="btn btn-outline-primary">Lihat Rekomendasi</a>
                 </div>
             </div>
         @endif
+        <!-- <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Kuesioner</h5>
+                <p class="card-text">Kuesioner website pelaporanotda</p>
+                <a href="https://forms.gle/9bmcXEXwCZFhYwGU8" class="btn btn-outline-primary">Isi Kuesioner</a>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Manual Book</h5>
+                <p class="card-text"></p>
+                <a href="https://drive.google.com/file/d/1mnQldA5MV3IcR7yr9QWTHeyWytLhstTx/view?usp=sharing" class="btn btn-outline-primary">Lihat Manual Book</a>
+            </div>
+        </div> -->
+        
     </div>
 </div>
 @endsection
+
+@push('scripts')
+
+@endpush

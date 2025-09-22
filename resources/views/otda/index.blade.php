@@ -25,11 +25,13 @@
     </div>
     <h2 class="mb-4">Daftar Indikator Komponen OTDA {{ session('tahun') }}</h2>
 
+    <div class="table-responsive">
     <table class="table table-bordered table-striped align-middle text-center">
         <thead class="table-primary">
             <tr>
                 <th>Aksi</th>
                 <th>No</th>
+                <th>Kode Pertanyaan</th>
                 <th>Tahun</th>
                 <th>Indikator</th>
                 <th>Definisi Operasional</th>
@@ -59,6 +61,7 @@
                         
                     </td>
                     <td>{{ $item->No }}</td>
+                    <td>{{ $item->KodePertanyaan }}</td>
                     <td>{{ $item->Tahun }}</td>
                     <td class="text-start">{{ $item->Indikator }}</td>
                     <td class="text-start">{{ $item->DefinisiOperasional }}</td>
@@ -78,6 +81,7 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 
     {{-- Letakkan semua modal DI SINI --}}
     @foreach ($data as $item)
@@ -197,7 +201,7 @@
                                 <button type="button"
                                     class="btn btn-sm btn-primary"
                                     onclick="bukaSubModalSetelahTutupModalUtama('modalCapaian{{ $item->KodePertanyaan }}', 'modalTambahData-{{ $item->KodePertanyaan }}')">
-                                    + Tambah Inovasi
+                                    + Tambah
                                 </button>
                             </div>
 
@@ -206,11 +210,19 @@
                                 <table class="table table-bordered table-striped">
                                     <thead class="table-light">
                                     <tr>
-                                        <th width="10%">Gambar</th>
-                                        <th width="20%">Nama Inovasi</th>
-                                        <th width="40%">Deskripsi</th>
-                                        <th width="20%">SKPD</th>
-                                        <th width="10%">Aksi</th>
+                                        @if ($item->KodePertanyaan === 'EKPD007')
+                                            <th width="10%">File</th>
+                                            <th width="20%">Nilai Capaian</th>
+                                            <th width="40%">Deskripsi</th>
+                                            <th width="20%">SKPD</th>
+                                            <th width="10%">Aksi</th>
+                                        @else
+                                            <th width="10%">Gambar</th>
+                                            <th width="20%">Nama Inovasi</th>
+                                            <th width="40%">Deskripsi</th>
+                                            <th width="20%">SKPD</th>
+                                            <th width="10%">Aksi</th>
+                                        @endif
                                     </tr>
                                     </thead>
                                     <tbody id="tabel-inovasi-body-{{ $item->KodePertanyaan }}">
@@ -448,11 +460,23 @@ function reloadListInovasi(kodePertanyaan) {
           <meta name="csrf-token" content="{{ csrf_token() }}">
           <div class="row mb-3">
             <div class="col-md-6">
-              <label class="form-label">Gambar</label>
-              <input type="file" class="form-control" name="Gambar" accept="image/*">
+              <label class="form-label">
+                @if ($item->KodePertanyaan === 'EKPD007')
+                    File
+                @else
+                    Gambar
+                @endif
+              </label>
+              <input type="file" class="form-control" name="Gambar" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt">
             </div>
             <div class="col-md-6">
-              <label class="form-label">Nama Inovasi</label>
+              <label class="form-label">
+                @if ($item->KodePertanyaan === 'EKPD007')
+                    Nilai Capaian
+                @else
+                    Nama Inovasi
+                @endif
+              </label>
               <input type="text" class="form-control" name="Nama" required>
             </div>
           </div>
@@ -493,27 +517,41 @@ function tambahDataInovasi(kodePertanyaan) {
         return response.json();
     })
     .then(data => {
-                if (data.success) {
+        if (data.success) {
             // Ambil data dari form
             const nama = form.querySelector('[name="Nama"]').value;
             const deskripsi = form.querySelector('[name="Deskripsi"]').value;
             const skpd = form.querySelector('[name="SKPD"]').value;
-            const gambarFile = form.querySelector('[name="Gambar"]').files[0];
+            const fileUpload = form.querySelector('[name="Gambar"]').files[0];
 
             const tabelBody = document.querySelector(`#tabel-inovasi-body-${kodePertanyaan}`);
-
-            // Buat elemen baris baru
             const tr = document.createElement('tr');
 
-            // Buat elemen gambar jika tersedia
-            let gambarTd = '<td>-</td>';
-            if (gambarFile) {
-                const gambarURL = URL.createObjectURL(gambarFile);
-                gambarTd = `<td><img src="${gambarURL}" alt="Gambar Inovasi" width="80"></td>`;
+            // Default kalau tidak ada file
+            let fileTd = '<td>Tidak ada file</td>';
+
+            if (fileUpload) {
+                const fileURL = URL.createObjectURL(fileUpload);
+                const fileType = fileUpload.type;
+                const fileName = fileUpload.name.toLowerCase();
+
+                if (fileType.startsWith("image/")) {
+                    fileTd = `<td><img src="${fileURL}" alt="Gambar Inovasi" width="80"></td>`;
+                } else if (fileType === "application/pdf") {
+                    fileTd = `<td><a href="${fileURL}" target="_blank">📄 Lihat PDF</a></td>`;
+                } else if (fileName.endsWith(".doc") || fileName.endsWith(".docx")) {
+                    fileTd = `<td><a href="${fileURL}" target="_blank">📝 Lihat Word</a></td>`;
+                } else if (fileName.endsWith(".xls") || fileName.endsWith(".xlsx")) {
+                    fileTd = `<td><a href="${fileURL}" target="_blank">📊 Lihat Excel</a></td>`;
+                } else if (fileName.endsWith(".ppt") || fileName.endsWith(".pptx")) {
+                    fileTd = `<td><a href="${fileURL}" target="_blank">📑 Lihat PowerPoint</a></td>`;
+                } else {
+                    fileTd = `<td><a href="${fileURL}" target="_blank">📎 Lihat File</a></td>`;
+                }
             }
 
             tr.innerHTML = `
-                ${gambarTd}
+                ${fileTd}
                 <td>${nama}</td>
                 <td>${deskripsi}</td>
                 <td>${skpd}</td>
@@ -528,8 +566,12 @@ function tambahDataInovasi(kodePertanyaan) {
             // Reset form
             form.reset();
 
-            const modalUtama = new bootstrap.Modal(document.getElementById('{{ $modalId }}'));
-            modalUtama.show();
+            // Tampilkan kembali modal utama
+            const modalUtamaId = `modalCapaian${kodePertanyaan}`;
+            const modalUtamaEl = document.getElementById(modalUtamaId);
+            const modalUtamaInstance = bootstrap.Modal.getInstance(modalUtamaEl) || new bootstrap.Modal(modalUtamaEl);
+            modalUtamaInstance.show();
+
             // Refresh ulang data tabel dari server
             fetch(`/otda/inovasi/${kodePertanyaan}/list`)
                 .then(res => res.json())
@@ -537,18 +579,18 @@ function tambahDataInovasi(kodePertanyaan) {
                     const tabelBody = document.querySelector(`#tabel-inovasi-body-${kodePertanyaan}`);
                     tabelBody.innerHTML = res.html;
                 });
+
             toastr.success('Data berhasil ditambah.');
-            // alert('Inovasi berhasil ditambahkan');
         } else {
             toastr.error('Gagal menyimpan data.');
-            // alert('Gagal menyimpan: ' + data.message);
         }
     })
     .catch(error => {
         console.error('Error:', error);
-        toastr.error('Terjadi kesalahan' + error);
+        toastr.error('Terjadi kesalahan: ' + error);
     });
 }
+
 </script>
     </div>
   </div>

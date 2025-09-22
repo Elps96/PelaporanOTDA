@@ -19,92 +19,181 @@ class IndikatorOTDAController extends Controller
         }
 
         $OPDPengampu = Auth::user()->name;
+
+        if (strtoupper($OPDPengampu) === 'PEMERINTAHAN') {
+        // Tampilkan semua OPD tanpa filter
+            $data = DB::select("
+            SELECT	A.Jenis,
+                            A.KodePertanyaan,
+                            A.`No`,
+                            A.Tahun,
+                            A.Indikator,
+                            A.DefinisiOperasional,
+                            A.Rumus,
+                            A.BuktiPendukung,
+                            A.OPDPengampu,
+                            A.JenisInput,
+                            A.Pilihan1,
+                            A.Pilihan2,
+                            B.Capaian,
+                            B.Keterangan,
+                            B.FileBukti
+            FROM		(
+                            SELECT 	A.*,
+                                            'JenisInput1' AS JenisInput,
+                                            'Tepat Waktu' AS Pilihan1,
+                                            'Tidak Tepat Waktu' AS Pilihan2
+                            FROM 		tb_indikator_komponen_otda A
+                            WHERE 	A.KodePertanyaan IN ('FKDH001', 'FKDH002')
+
+                            UNION ALL
+
+                            SELECT 	A.*,
+                                            'JenisInput2' AS JenisInput,
+                                            'Ada' AS Pilihan1,
+                                            'Tidak Ada' AS Pilihan2
+                            FROM 		tb_indikator_komponen_otda A
+                            WHERE 	A.KodePertanyaan IN ('FKDH004','EKPD008')
+
+                            UNION ALL
+
+                            SELECT 	A.*,
+                                            'JenisInput3' AS JenisInput,
+                                            'Tepat' AS Pilihan1,
+                                            'Tidak Tepat' AS Pilihan2
+                            FROM 		tb_indikator_komponen_otda A
+                            WHERE 	A.KodePertanyaan IN ('PHD002')
+
+                            UNION ALL
+
+                            SELECT 	A.*,
+                                            'JenisInput4' AS JenisInput,
+                                            A.RumusIsiAtas AS Pilihan1,
+                                            A.RumusIsiBawah AS Pilihan2
+                            FROM 		tb_indikator_komponen_otda A
+                            WHERE 	A.KodePertanyaan IN ('PHD003','KKPD003','KKPD004','KKPD005','EKPD002','EKPD003','EKPD004','EKPD005','EKPD006','EKPD013')
+                            UNION ALL
+                            SELECT 	A.*,
+                                            'JenisInput5' AS JenisInput,
+                                            'Ya' AS Pilihan1,
+                                            'Tidak' AS Pilihan2
+                            FROM 		tb_indikator_komponen_otda A
+                            WHERE 	A.KodePertanyaan IN ('KKPD001','KKPD002')
+
+                            UNION ALL
+
+                            SELECT 	A.*,
+                                            'JenisInput6' AS JenisInput,
+                                            A.RumusIsiAtas AS Pilihan1,
+                                            '' AS Pilihan2
+                            FROM 		tb_indikator_komponen_otda A
+                            WHERE 	A.KodePertanyaan IN ('EKPKD001','EKPD011','EKPD012')
+
+                            UNION ALL
+                            SELECT 	A.*,
+                                            'JenisInput7' AS JenisInput,
+                                            '' AS Pilihan1,
+                                            '' AS Pilihan2
+                            FROM 		tb_indikator_komponen_otda A
+                            WHERE 	A.KodePertanyaan IN ('EKPD010')
+                            UNION ALL
+                            SELECT 	A.*,
+                                            'JenisInput8' AS JenisInput,
+                                            '' AS Pilihan1,
+                                            '' AS Pilihan2
+                            FROM 		tb_indikator_komponen_otda A
+                            WHERE 	A.KodePertanyaan IN ('EKPD009','EKPD007')
+                            )	A
+            LEFT JOIN	tb_input_capaian B ON A.KodePertanyaan = B.KodePertanyaan
+            ");
+        } else {
+            // Filter sesuai OPD yang login
         $data = DB::select("
-        SELECT	A.Jenis,
-                        A.KodePertanyaan,
-                        A.`No`,
-                        A.Tahun,
-                        A.Indikator,
-                        A.DefinisiOperasional,
-                        A.Rumus,
-                        A.BuktiPendukung,
-                        A.OPDPengampu,
-                        A.JenisInput,
-                        A.Pilihan1,
-                        A.Pilihan2,
-                        B.Capaian,
-                        B.Keterangan,
-                        B.FileBukti
-        FROM		(
-                        SELECT 	A.*,
-                                        'JenisInput1' AS JenisInput,
-                                        'Tepat Waktu' AS Pilihan1,
-                                        'Tidak Tepat Waktu' AS Pilihan2
-                        FROM 		tb_indikator_komponen_otda A
-                        WHERE 	A.KodePertanyaan IN ('FKDH001', 'FKDH002')
+                SELECT	A.Jenis,
+                                A.KodePertanyaan,
+                                A.`No`,
+                                A.Tahun,
+                                A.Indikator,
+                                A.DefinisiOperasional,
+                                A.Rumus,
+                                A.BuktiPendukung,
+                                A.OPDPengampu,
+                                A.JenisInput,
+                                A.Pilihan1,
+                                A.Pilihan2,
+                                B.Capaian,
+                                B.Keterangan,
+                                B.FileBukti
+                FROM		(
+                                SELECT 	A.*,
+                                                'JenisInput1' AS JenisInput,
+                                                'Tepat Waktu' AS Pilihan1,
+                                                'Tidak Tepat Waktu' AS Pilihan2
+                                FROM 		tb_indikator_komponen_otda A
+                                WHERE 	A.KodePertanyaan IN ('FKDH001', 'FKDH002')
 
-                        UNION ALL
+                                UNION ALL
 
-                        SELECT 	A.*,
-                                        'JenisInput2' AS JenisInput,
-                                        'Ada' AS Pilihan1,
-                                        'Tidak Ada' AS Pilihan2
-                        FROM 		tb_indikator_komponen_otda A
-                        WHERE 	A.KodePertanyaan IN ('FKDH004','EKPD008')
+                                SELECT 	A.*,
+                                                'JenisInput2' AS JenisInput,
+                                                'Ada' AS Pilihan1,
+                                                'Tidak Ada' AS Pilihan2
+                                FROM 		tb_indikator_komponen_otda A
+                                WHERE 	A.KodePertanyaan IN ('FKDH004','EKPD008')
 
-                        UNION ALL
+                                UNION ALL
 
-                        SELECT 	A.*,
-                                        'JenisInput3' AS JenisInput,
-                                        'Tepat' AS Pilihan1,
-                                        'Tidak Tepat' AS Pilihan2
-                        FROM 		tb_indikator_komponen_otda A
-                        WHERE 	A.KodePertanyaan IN ('PHD002')
+                                SELECT 	A.*,
+                                                'JenisInput3' AS JenisInput,
+                                                'Tepat' AS Pilihan1,
+                                                'Tidak Tepat' AS Pilihan2
+                                FROM 		tb_indikator_komponen_otda A
+                                WHERE 	A.KodePertanyaan IN ('PHD002')
 
-                        UNION ALL
+                                UNION ALL
 
-                        SELECT 	A.*,
-                                        'JenisInput4' AS JenisInput,
-                                        A.RumusIsiAtas AS Pilihan1,
-                                        A.RumusIsiBawah AS Pilihan2
-                        FROM 		tb_indikator_komponen_otda A
-                        WHERE 	A.KodePertanyaan IN ('PHD003','KKPD003','KKPD004','KKPD005','EKPD002','EKPD003','EKPD004','EKPD005','EKPD006','EKPD013')
-                        UNION ALL
-                        SELECT 	A.*,
-                                        'JenisInput5' AS JenisInput,
-                                        'Ya' AS Pilihan1,
-                                        'Tidak' AS Pilihan2
-                        FROM 		tb_indikator_komponen_otda A
-                        WHERE 	A.KodePertanyaan IN ('KKPD001','KKPD002')
+                                SELECT 	A.*,
+                                                'JenisInput4' AS JenisInput,
+                                                A.RumusIsiAtas AS Pilihan1,
+                                                A.RumusIsiBawah AS Pilihan2
+                                FROM 		tb_indikator_komponen_otda A
+                                WHERE 	A.KodePertanyaan IN ('PHD003','KKPD003','KKPD004','KKPD005','EKPD002','EKPD003','EKPD004','EKPD005','EKPD006','EKPD013')
+                                UNION ALL
+                                SELECT 	A.*,
+                                                'JenisInput5' AS JenisInput,
+                                                'Ya' AS Pilihan1,
+                                                'Tidak' AS Pilihan2
+                                FROM 		tb_indikator_komponen_otda A
+                                WHERE 	A.KodePertanyaan IN ('KKPD001','KKPD002')
 
-                        UNION ALL
+                                UNION ALL
 
-                        SELECT 	A.*,
-                                        'JenisInput6' AS JenisInput,
-                                        A.RumusIsiAtas AS Pilihan1,
-                                        '' AS Pilihan2
-                        FROM 		tb_indikator_komponen_otda A
-                        WHERE 	A.KodePertanyaan IN ('EKPKD001','EKPD007','EKPD011','EKPD012')
+                                SELECT 	A.*,
+                                                'JenisInput6' AS JenisInput,
+                                                A.RumusIsiAtas AS Pilihan1,
+                                                '' AS Pilihan2
+                                FROM 		tb_indikator_komponen_otda A
+                                WHERE 	A.KodePertanyaan IN ('EKPKD001','EKPD011','EKPD012')
 
-                        UNION ALL
-                        SELECT 	A.*,
-                                        'JenisInput7' AS JenisInput,
-                                        '' AS Pilihan1,
-                                        '' AS Pilihan2
-                        FROM 		tb_indikator_komponen_otda A
-                        WHERE 	A.KodePertanyaan IN ('EKPD010')
-                        UNION ALL
-                        SELECT 	A.*,
-                                        'JenisInput8' AS JenisInput,
-                                        '' AS Pilihan1,
-                                        '' AS Pilihan2
-                        FROM 		tb_indikator_komponen_otda A
-                        WHERE 	A.KodePertanyaan IN ('EKPD009')
-                        )	A
-        LEFT JOIN	tb_input_capaian B ON A.KodePertanyaan = B.KodePertanyaan
-        WHERE			A.OPDPengampu = ?", [$OPDPengampu]
-        );
-
+                                UNION ALL
+                                SELECT 	A.*,
+                                                'JenisInput7' AS JenisInput,
+                                                '' AS Pilihan1,
+                                                '' AS Pilihan2
+                                FROM 		tb_indikator_komponen_otda A
+                                WHERE 	A.KodePertanyaan IN ('EKPD010')
+                                UNION ALL
+                                SELECT 	A.*,
+                                                'JenisInput8' AS JenisInput,
+                                                '' AS Pilihan1,
+                                                '' AS Pilihan2
+                                FROM 		tb_indikator_komponen_otda A
+                                WHERE 	A.KodePertanyaan IN ('EKPD009','EKPD007')
+                                )	A
+                LEFT JOIN	tb_input_capaian B ON A.KodePertanyaan = B.KodePertanyaan
+                WHERE			A.OPDPengampu = ?", [$OPDPengampu]
+                );
+        }
         return view('otda.index', compact('data'));
 
     }
@@ -168,7 +257,7 @@ public function storeInovasi(Request $request, $kodePertanyaan)
             'Nama' => 'required|string|max:255',
             'Deskripsi' => 'required|string',
             'SKPD' => 'required|string|max:255',
-            'Gambar' => 'nullable|image|max:2048', // maksimal 2MB
+            'Gambar' => 'nullable|mimes:jpg,jpeg,png,gif,webp,pdf,doc,docx,xls,xlsx,ppt,pptx,txt|max:5120', // maksimal 2MB
         ]);
 
         $data = new InputCapaianInovasi();
@@ -196,7 +285,18 @@ public function storeInovasi(Request $request, $kodePertanyaan)
 public function getListInovasi($kodePertanyaan)
 {
     try {
-        $data = InputCapaianInovasi::where('KodePertanyaan', $kodePertanyaan)->get();
+        // $data = InputCapaianInovasi::where('KodePertanyaan', $kodePertanyaan)->get();
+        $data = DB::select("
+                SELECT		A.No,
+                            A.KodePertanyaan,
+                            A.Nama,
+                            A.Deskripsi,
+                            A.Gambar,
+                            A.SKPD
+                FROM		tb_input_capaian_inovasi A
+                WHERE		A.KodePertanyaan = ?", [$kodePertanyaan]
+                );
+        
 
         $html = view('partials._tabel_inovasi', compact('data'))->render();
         
